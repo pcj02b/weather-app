@@ -1,14 +1,15 @@
 import axios from 'axios';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
-const apiKey = dotenv.MAPBOX_ACCESS_TOKEN;
-const baseUrl = dotenv.MAPBOX_BASE_URL;
+dotenv.config();
+const accessToken = process.env.MAPBOX_ACCESS_TOKEN;
+const baseUrl = process.env.MAPBOX_BASE_URL;
 
 const geoCodeForward = (query, callback) => {
     axios
-        .get(`${baseUrl}/search/geocode/v6/forward`, {
+        .get(baseUrl + '/search/geocode/v6/forward', {
             params: {
-                access_token: apiKey,
+                access_token: accessToken,
                 q: query,
             }
         })

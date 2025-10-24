@@ -3,7 +3,6 @@ import path from 'path';
 import hbs from 'hbs';
 import weatherStackApi from "./utils/weatherStackApi.js";
 import mapBoxApi from "./utils/mapBoxApi.js";
-
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -60,6 +59,7 @@ app.get('/weather', (req, res) => {
         });
         return;
     }
+
 
     mapBoxApi.geoCodeForward(req.query.address, (coordinates, error) => {
         if (error) {
