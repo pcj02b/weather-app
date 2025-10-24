@@ -3,14 +3,15 @@ import https from 'https';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const apiKey = process.env.WEATHERSTACK_ACCESS_KEY;
+const accessKey = process.env.WEATHERSTACK_ACCESS_KEY;
 const baseUrl = process.env.WEATHERSTACK_BASE_URL;
 
 const getCurrentWeather = (coordinates, callback) => {
+    console.log('accessKey', accessKey)
     axios
         .get(`${baseUrl}/current`, {
             params: {
-                access_key: apiKey,
+                access_key: accessKey,
                 query: `${coordinates[0]},${coordinates[1]}`,
             }
         })
@@ -28,7 +29,7 @@ const getCurrentWeatherAlt = (coordinates, callback) => {
 
     let url = baseUrl;
     url += '/current';
-    url += '?access_key=' + apiKey;
+    url += '?access_key=' + accessKey;
     url += '&query=' + encodeURIComponent(`${coordinates[0]},${coordinates[1]}`);
 
     const request = https.get(url, (response) => {
@@ -39,7 +40,9 @@ const getCurrentWeatherAlt = (coordinates, callback) => {
         });
 
         response.on('end', () => {
-            callback(JSON.parse(data).current, undefined);
+            const result = JSON.parse(data)
+            console.log('result', result)
+            callback(result.current, undefined);
         });
     });
 

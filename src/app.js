@@ -67,7 +67,7 @@ app.get('/weather', (req, res) => {
             return;
         }
 
-        weatherStackApi.getCurrentWeatherAlt(coordinates, ({ temperature, feelslike } = {}, error) => {
+        weatherStackApi.getCurrentWeather(coordinates, ({ temperature, feelslike } = {}, error) => {
             if (error) {
             res.status(400).send({error: error.message});
                 return;
