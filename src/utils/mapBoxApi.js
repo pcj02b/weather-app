@@ -1,7 +1,8 @@
 import axios from 'axios';
+import * as dotenv from 'dotenv';
 
-const apiKey = 'pk.eyJ1IjoicGNqYWNvYnMyMCIsImEiOiJjbWgyNHdxZGkxZWdxMmtxMjJ1b3RqNGVkIn0.HKdKW2WBN69l_cc4wgjPzQ';
-const baseUrl = 'https://api.mapbox.com';
+const apiKey = dotenv.MAPBOX_ACCESS_TOKEN;
+const baseUrl = dotenv.MAPBOX_BASE_URL;
 
 const geoCodeForward = (query, callback) => {
     axios

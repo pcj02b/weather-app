@@ -1,8 +1,9 @@
 import axios from 'axios';
 import https from 'https';
+import * as dotenv from 'dotenv';
 
-const apiKey = '2d916c3dee1dd09a40361e6717a4806f';
-const baseUrl = 'https://api.weatherstack.com';
+const apiKey = dotenv.WEATHERSTACK_ACCESS_KEY;
+const baseUrl = dotenv.WEATHERSTACK_BASE_URL;
 
 const getCurrentWeather = (coordinates, callback) => {
     axios
